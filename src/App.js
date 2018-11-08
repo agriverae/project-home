@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 class App extends Component {
 
   componentWillMount(){
-    this.props.fetchRecipes()
+    this.props.getRecipes();
   }
 
   render() {
@@ -34,4 +34,10 @@ const mapStateToProps = state => ({
   recipes: state.recipes.recipes
 });
 
-export default connect(mapStateToProps, {fetchRecipes})(App);
+const mapDispatchToProps = dispatch =>({
+  getRecipes() {
+    dispatch(fetchRecipes());
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
