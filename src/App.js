@@ -1,28 +1,37 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.scss';
-
+import { fetchRecipes } from "./actions/recipeActions";
+import { connect } from 'react-redux';
 class App extends Component {
+
+  componentWillMount(){
+    this.props.fetchRecipes()
+  }
+
   render() {
+
+    let mostrar;
+
+    if(this.props.recipes.length === 0){
+      mostrar = <div><h1>Nothing to see</h1></div>
+    }
+    else {
+      mostrar = 
+      <ul>
+        {this.props.recipes.map((recipe) => <li>{recipe.recipeName}</li> ) }
+      </ul>
+    }
+
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {mostrar}
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  recipes: state.recipes.recipes
+});
+
+export default connect(mapStateToProps, {fetchRecipes})(App);
