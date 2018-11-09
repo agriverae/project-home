@@ -1,0 +1,210 @@
+import recipe_reducer from "./recipeReducer";
+import C from "../actions/types";
+
+var finalResult = {
+    recipes: [
+        {
+            "id": 1,
+            "categoryId": 1,
+            "recipeName": "Knorr Creamy Shrimp Alfredo",
+            "chef": "Ronald Bradley",
+            "preparation": [
+                "1. HEAT oil in large nonstick skillet over medium-high heat and cook shrimp, stirring occasionally, until shrimp turn pink, about 5 minutes.",
+                "2. Remove and set aside.",
+                "3. PREPARE Knorr® Pasta Sides - Alfredo in same skillet according to package directions, stirring in tomatoes and spinach during the last 5 minutes of cook time.",
+                "4. STIR in cooked shrimp.",
+                "5. Sprinkle with cheese."
+            ],
+            "rating": 2,
+            "imageUrl": "http://162.61.226.249/PicOriginal/P170292013090324_5.jpg",
+            "publishdate": "6/15/2016"
+        },
+        {
+            "id": 2,
+            "categoryId": 2,
+            "recipeName": "Spring Roll Salad Recipe",
+            "chef": "Carl Wilson",
+            "preparation": [
+                "1. Bring a large pot of water to a boil. While the water is heating, make both your sauces. To make the peanut sauce, place all the ingredients - coconut milk, peanut butter, cayenne pepper, shallots, brown sugar, soy sauce, and lime juice - in a food processor or blender, and blend until smooth. Taste, and adjust with more soy sauce or lime, if needed. Also, thin with little splashes of hot water to thin the consistency, if you like. Set aside.",
+                "2. To make the lime dressing, place the hot water in a small bowl and sprinkle in the sugar. Stir in the garlic, chile pepper, lime juice, and soy sauce. The sauces will keep for a week refrigerated. Bring to room temperature, or gently heat, before using.",
+                "3. Once the water is boiling, salt well, and add your vegetables to the pot. Blanch for just under a minute, remove with a slotted spoon or strainer, and run under cold water to stop the cooking. Set aside. Bring the water back to a boil, and cook the noodles per package instructions. Drain, and rinse under cold water until completely cold.",
+                "4. Place the noodles in a large bowl, or on a large platter, and toss with the cabbage, peanuts, and a generous amount of the peanut sauce. Top with the blanched vegetables, and give another light toss. Just before serving, drizzle generously with the lime dressing. Serve both dressings at the table, so people can add more to their liking."
+            ],
+            "rating": 4,
+            "imageUrl": "http://www.101cookbooks.com/mt-static/images/food/spring-roll-salad-recipe.jpg",
+            "publishdate": "9/26/2015"
+        },
+        {
+            "id": 3,
+            "categoryId": 3,
+            "recipeName": "Homestyle Beef Stew",
+            "chef": "Lois Gonzalez",
+            "preparation": [
+                "1. Toss beef with flour; set aside.",
+                "2. Heat oil in large saucepan over medium heat and brown beef. Remove beef from saucepot; set aside.",
+                "3. Stir onions and garlic into same saucepot and cook, stirring frequently, until onions are tender, about 4 minutes.",
+                "4. Stir in Knorr® Homestyle Stock - Beef, water, Worcestershire sauce and beef.",
+                "5. Bring to a boil over high heat, stirring until Stock is melted.",
+                "6. Reduce heat to low and simmer covered, stirring occasionally, 40 minutes or until beef is almost tender.",
+                "7. Stir in potatoes and carrots and simmer an additional 40 minutes or until beef and vegetables are tender."
+            ],
+            "rating": 5,
+            "imageUrl": "http://162.61.226.249/PicOriginal/P63192612080949_5.jpg",
+            "publishdate": "3/8/2016"
+        },
+        {
+            "id": 4,
+            "categoryId": 4,
+            "recipeName": "Blackberry Saffron Honey Recipe",
+            "chef": "Phyllis Knight",
+            "preparation": [
+                "1. Place the saffron threads in a tiny bowl.",
+                "2. Add the extract and stir until the saffron is wet.",
+                "3. Let it sit for 10 minutes before stirring the saffron mixture into the honey.",
+                "4. You'll want to stir well, until the honey is uniform and the threads are evenly distributed throughout.",
+                "5. In the meantime, gently heat the blackberries in a saucepan over medium heat.",
+                "6. You want the berries to begin to breakdown and release juices, but not overcook.",
+                "7. Stir the berries into the honey, and store in a jar in the refrigerator for up to a week."
+            ],
+            "rating": 5,
+            "imageUrl": "http://www.101cookbooks.com/mt-static/images/food/saffron-blackberry-honey-h.jpg",
+            "publishdate": "9/12/2015"
+        },
+        {
+            "id": 5,
+            "categoryId": 4,
+            "recipeName": "Strawberry Parfait",
+            "chef": "Sanjo ",
+            "preparation": [
+                "Prepare Fillings:",
+                "1. Prepare ice bath by placing ice cubes and water in a large bowl. Place a clean and dry mixing bowl in the ice bath and add 473 ml (1 Pint) heavy whipping cream, and 38 g (3 Tbsp.) sugar to keep cool.",
+                "2. Once cooled, transfer the mixing bowl to the stand mixer and whisk on high speed until medium to firm peaks. Transfer the whipped cream to a piping bag. You can put the bag in a tall glass and fold the top half of the bag outward as you see in the picture below.",
+                "3. Cut sponge cakes/castella/brownies into small cubes.",
+                "4. Slice fresh fruits of your choice.",
+                "Assemble Strawberry Parfait:",
+                "1. Put cornflakes on the bottom of the glass. Place the strawberry slices vertically around the inner glass so that we can see the strawberry from outside the glass. Fill the void with whipped cream.",
+                "2. Add the chocolate syrup and some Castella cubes.",
+                "3. Add a scoop of ice cream and strawberry halves around the glass rim. Decorate with almond slices and whipped cream.",
+                "4. And put one whole strawberry, mint, and 2 pockys on top."
+            ],
+            "rating": 5,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2016/08/Parfait-8.jpg",
+            "publishdate": "9/12/2015"
+        },
+        {
+            "id": 6,
+            "categoryId": 4,
+            "recipeName": "Chocolate Parfait",
+            "chef": "Sanjo ",
+            "preparation": [
+                "Prepare Fillings:",
+                "1. Prepare ice bath by placing ice cubes and water in a large bowl. Place a clean and dry mixing bowl in the ice bath and add 473 ml (1 Pint) heavy whipping cream, and 38 g (3 Tbsp.) sugar to keep cool.",
+                "2. Once cooled, transfer the mixing bowl to the stand mixer and whisk on high speed until medium to firm peaks. Transfer the whipped cream to a piping bag. You can put the bag in a tall glass and fold the top half of the bag outward as you see in the picture below.",
+                "3. Cut sponge cakes/castella/brownies into small cubes.",
+                "4. Slice fresh fruits of your choice.",
+                "Assemble Strawberry Parfait:",
+                "1. Put granolas on the bottom of the glass. Add some whipped cream and brownie cubes. Squirt some chocolate syrup vertically on the inner glass so you can see chocolate marks from outside the glass.",
+                "2. Add whipped cream, granolas, and sliced almonds, then two scoops of ice cream, decorate with whipped cream and banana slices.",
+                "3. Top off with sliced almonds, chocolate syrups, mint leaves, and cigarette cookie on top."
+            ],
+            "rating": 3,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2016/08/Parfait-11.jpg",
+            "publishdate": "8/19/2015"
+        },
+        {
+            "id": 7,
+            "categoryId": 1,
+            "recipeName": "Classic Mentaiko Pasta",
+            "chef": "Nami ",
+            "preparation": [
+                "1. Bring a large pot of water to boil. Once boiling, add 1-2 tsp. kosher salt and cook the spaghetti until al dente, about 10 minutes (check the package instructions as well).",
+                "2. In a large bowl, combine 2 Tbsp. milk, 2 Tbsp. heavy whipping cream, 2 Tbsp. unsalted butter, and 1 Tbsp. soy sauce. Don't worry if the butter becomes solidify. Hot spaghetti will melt the butter again.",
+                "3. Add freshly ground black pepper and stir to combine.",
+                "4. Cut each roe sac in half and squeeze out the roe from the sac with hands or knife.",
+                "5. Add the roe to the bowl and mix well. Discard the membrane.",
+                "6. When the spaghetti is done, drain and transfer to the large bowl with the sauce.",
+                "7. Toss to combine until the butter is melted and the sauce is evenly distributed. Taste and adjust with black pepper and kosher salt.",
+                "8. Serve immediately, garnished with shredded nori. If you can find shiso leaves in a Japanese grocery store, roll them up and cut it into thin strips and garnish. Shiso is a wonderful addition to this dish."
+            ],
+            "rating": 4,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2016/07/Mentaiko-Pasta-580x386.jpg",
+            "publishdate": "3/22/2016"
+        },
+        {
+            "id": 8,
+            "categoryId": 1,
+            "recipeName": "Spaghetti alle Vongole",
+            "chef": "Nami ",
+            "preparation": [
+                "1. De-grit clams",
+                "2. Bring a pot of salted water to a boil. Add pasta, stirring constantly in the beginning to prevent it from sticking together. Cook until al dente. Drain pasta into a colander.",
+                "3. Meanwhile, in a large sauté pan heat the olive oil over medium heat. When it’s hot, add garlic and red chili pepper. Reduce heat to medium low and sauté until fragrant. Be careful not to burn the garlic.",
+                "4. Add the clams and wine and increase the heat to medium. Quickly cover and steam for 5 minutes or until all the clams have opened.",
+                "5. Discard the clams that didn’t open and add 1 Tbps. parsley and season with pepper. Transfer the clams to a plate.",
+                "6. Taste the sauce and season with pepper and salt (clams are already salty so you probably don't need to add too much salt).",
+                "7. Add the pasta and toss until pasta is coated with the sauce.",
+                "8. Remove from the heat and place pasta on a serving plate and put clams on top. Garnish with remaining parsley and serve immediately."
+            ],
+            "rating": 5,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2013/06/Clam-Pasta.jpg",
+            "publishdate": "5/28/2016"
+        },
+        {
+            "id": 9,
+            "categoryId": 2,
+            "recipeName": "Caesar Salad",
+            "chef": "Nami ",
+            "preparation": [
+                "For Homemade Croutons:",
+                "1. Preheat the oven to 400F. Crush the garlic clove (or finely mince it) into a large bowl. Add olive oil, salt, pepper, and mix well. Let the garlic infuse the olive oil for a few minutes.",
+                "2. Meanwhile, slice the bread and cut into about ¾ inch (2 cm) cubes.",
+                "3. Add the bread cubes into the bowl and toss until the bread is lightly and evenly coated with the olive oil. Spread bread cubes in a single layer on a baking sheet.",
+                "4. Bake at 400F for 15 minutes, or until golden brown. Turn once halfway through cooking in order to brown all sides of the croutons. Cooking time will depend on the thickness of the bread cubes (mine is about 15-20 minutes). Remove from oven and cool on wire rack completely. After cooling, use immediately, or store in an air-tight container/bag for up to 1 week.",
+                "For the Caesar Salad:",
+                "5. In a large bowl, combine the dressing ingredients and whisk until dressing is thick and glossy. The dressing can be made one day in advance.",
+                "6. Cut the romaine lettuce into bite size pieces and wash them. Drain and dry thoroughly so that the dressing won’t be diluted.",
+                "7. Gently toss the lettuce and dressing, and then top off with the grated or shaved Parmesan cheese and croutons."
+            ],
+            "rating": 4,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2015/10/Caesar-Salad-IV.jpg",
+            "publishdate": "1/11/2016"
+        },
+        {
+            "id": 10,
+            "categoryId": 2,
+            "recipeName": "Shrimp Salad Recipe",
+            "chef": "Nami ",
+            "preparation": [
+                "1. Clean shrimp with corn starch and devein (See How to Clean Shrimp). Keep the shell on so the shrimp won’t lose the flavor while being cooked.",
+                "2. Bring water to a boil in a medium saucepan. Add sake and salt (to remove smell) and the shrimp and reduce the heat to medium. Cook uncovered for 2 minutes or until the shrimp turns pink.",
+                "3. Monitor closely to avoid overcooking. The meat of uncooked shrimp will turn from translucent (raw) to pink and opaque (cooked).Remove with a mesh strainer to a bowl of iced water to let cool. The ice bath will help the shrimp have firm texture.",
+                "4. Peel the shrimp shell and cut into bite size pieces.",
+                "5. In a small saucepan, bring water to a boil. Once boiling, lower the heat to medium and cook the eggs for 10 minutes. Transfer the eggs to iced water and let cool for 3 minutes to stop cooking.",
+                "6. Peel the egg shell and cut into small pieces.",
+                "7. Cut broccoli florets in bite size pieces. Bring water to a boil in the medium saucepan and cook broccoli for 1 minute or till tender. Watch closely to avoid overcooking.",
+                "8. Transfer to iced water to stop cooking further and drain well.",
+                "9. Peel the cucumber and cut it in half lengthwise. Then cut into ¼ inch slices.",
+                "10. Cut avocado into cubes and scoop out the avocado into a large bowl with spoon.",
+                "11. Put all the ingredients in the bowl, and add mayonnaise and milk.",
+                "12. Sprinkle salt and freshly ground black pepper and toss all together. Add more salt and pepper to taste, if desired. Serve chilled or at room temperature."
+            ],
+            "rating": 5,
+            "imageUrl": "http://www.justonecookbook.com/wp-content/uploads/2014/11/Shrimp-Salad-Recipe.jpg",
+            "publishdate": "5/28/2016"
+        }
+    ]
+};
+
+describe("recipes reducer", () => {
+    it("fetchRecipes success", async () => {
+        const state = {
+            recipes: []
+        }
+        const action = {
+            type: C.FETCH_RECIPES,
+        }
+        
+        await expect(recipe_reducer(state,action)).resolves.toBe(finalResult);
+
+    })
+});
