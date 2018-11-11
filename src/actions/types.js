@@ -1,5 +1,6 @@
 const constants =  {
-    FETCH_RECIPES : 'FETCH_RECIPES',
+    FETCH_ALL_RECIPES : 'FETCH_ALL_RECIPES',
+    FETCH_RECIPE : 'FETCH_RECIPE',
 }
 
 export default constants;
