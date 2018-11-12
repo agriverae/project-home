@@ -1,43 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, Route } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './store';
+import { Row, Col } from "react-materialize";
 import './App.scss';
-import { fetchRecipes } from "./actions/recipeActions";
-import { connect } from 'react-redux';
-class App extends Component {
+import NavigationBar from './components/shared/navigationbar/navigationbar'
+import Home from "./components/home/Home";
 
-  componentWillMount(){
-    this.props.getRecipes();
-  }
 
-  render() {
-
-    let mostrar;
-
-    if(this.props.recipes.length === 0){
-      mostrar = <div><h1>Nothing to see</h1></div>
-    }
-    else {
-      mostrar = 
-      <ul>
-        {this.props.recipes.map((recipe) => <li>{recipe.recipeName}</li> ) }
-      </ul>
-    }
-
+const App = () =>  {
+  
     return (
-      <div className="App">
-        {mostrar}
-      </div>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Row>
+            <Col s={2}></Col>
+            <Col s={8}>
+              <Row>
+                <Col s={12}>
+                  <NavigationBar />
+                  <Route exact path="/" component={Home} />
+                </Col>
+              </Row>
+            </Col>
+            <Col s={2}></Col>
+          </Row>
+        </BrowserRouter>
+      </Provider>
     );
-  }
 }
 
-const mapStateToProps = state => ({
-  recipes: state.recipes.recipes
-});
-
-const mapDispatchToProps = dispatch =>({
-  getRecipes() {
-    dispatch(fetchRecipes());
-  }
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

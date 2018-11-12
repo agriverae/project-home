@@ -19,10 +19,20 @@ export const fetchAllRecipes = () => dispatch => {
 
 export const fetchRecipe = (id) => dispatch => {
     return axios.get(`${hostinfo}/recipes/${id}`)
-    .then(recipe => {
-        dispatch({
-            type: C.FETCH_RECIPE,
-            payload: recipe.data
-        })
-    })
+            .then(recipe => {
+                dispatch({
+                    type: C.FETCH_RECIPE,
+                    payload: recipe.data
+                })
+            })
+}
+
+export const searchRecipes = (recipeName) => dispatch => {
+    return axios.get(`${hostinfo}/recipes?recipeName_like=${recipeName}`)
+            .then(recipes => {
+                dispatch({
+                    type: C.SEARCH_RECIPES,
+                    payload: recipes.data
+                })
+            });
 }

@@ -19,6 +19,11 @@ export default function (state = initialState, action) {
                 recipeSelected: true,
                 recipe: action.payload
             }
+        case C.SEARCH_RECIPES:
+            return {
+                ...state,
+                recipesFound: action.payload
+            }
         default:
             return state;
     }
