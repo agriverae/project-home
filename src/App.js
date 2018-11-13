@@ -1,15 +1,17 @@
 import React from 'react';
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './store';
 import { Row, Col } from "react-materialize";
 import './App.scss';
-import NavigationBar from './components/shared/navigationbar/navigationbar'
-import Home from "./components/home/Home";
+import NavigationBar from './components/shared/NavigationBar'
+import Home from "./components/Home/Home";
+import Recipe from './components/shared/Recipe/Recipe'
+import Category from './components/Category/Category';
+import { RecipeSearch } from "./components/shared/RecipeList";
 
 
 const App = () =>  {
-  
     return (
       <Provider store={store}>
         <BrowserRouter>
@@ -19,7 +21,12 @@ const App = () =>  {
               <Row>
                 <Col s={12}>
                   <NavigationBar />
-                  <Route exact path="/" component={Home} />
+                  <Switch>
+                    <Route path="/recipe/:id" component={Recipe} />
+                    <Route path="/categories" component={Category} />
+                    <Route path="/recipeSearch/:searchName" component={RecipeSearch} />
+                    <Route path="/" component={Home} />
+                  </Switch>
                 </Col>
               </Row>
             </Col>

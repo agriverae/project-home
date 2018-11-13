@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import RecipeCard from "../Recipe/RecipeCard";
-import {Col, ProgressBar} from 'react-materialize'
+import RecipeCard from "../RecipeCard/RecipeCard";
+import { ProgressBar } from 'react-materialize'
 
 class RecipeList extends Component {
   
   componentDidMount() {
-    this.props.getRecipes();
+    (this.props.match)? this.props.getRecipes(this.props.match.params.searchName) : this.props.getRecipes() ;
+  }
+
+  componentWillUpdate(){
+    console.log('hi')
   }
 
   render() {
@@ -13,10 +17,7 @@ class RecipeList extends Component {
     let mostrar;
 
     if(this.props.recipes.length === 0){
-        mostrar =
-        <Col s={12}>
-          <ProgressBar />
-        </Col>
+        mostrar = <ProgressBar />
     }
     else {
       mostrar = this.props.recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />); 

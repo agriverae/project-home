@@ -1,24 +1,21 @@
 import C from './types';
 import axios from "axios";
-
-var hostname = window.location.hostname;
-
-var hostinfo = 'http://' + hostname + ':' + 5000;
+import api from "../config/apiconfig";
 
 export const fetchAllRecipes = () => dispatch => {
-    return axios.get(`${hostinfo}/recipes`)
+    return axios.get(`${api}/recipes`)
     .then(recipes => 
         {
             dispatch({
-            type: C.FETCH_ALL_RECIPES,
-            payload: recipes.data
+                type: C.FETCH_ALL_RECIPES,
+                payload: recipes.data
             });
         }
     );
 }
 
 export const fetchRecipe = (id) => dispatch => {
-    return axios.get(`${hostinfo}/recipes/${id}`)
+    return axios.get(`${api}/recipes/${id}`)
             .then(recipe => {
                 dispatch({
                     type: C.FETCH_RECIPE,
@@ -28,7 +25,7 @@ export const fetchRecipe = (id) => dispatch => {
 }
 
 export const searchRecipes = (recipeName) => dispatch => {
-    return axios.get(`${hostinfo}/recipes?recipeName_like=${recipeName}`)
+    return axios.get(`${api}/recipes?recipeName_like=${recipeName}`)
             .then(recipes => {
                 dispatch({
                     type: C.SEARCH_RECIPES,

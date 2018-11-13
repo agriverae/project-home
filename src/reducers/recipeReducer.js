@@ -3,7 +3,8 @@ import C from '../actions/types';
 const initialState = {
     recipes: [],
     recipeSelected: false,
-    recipe: {}
+    recipe: {},
+    recipesFound: []
 };
 
 export default function (state = initialState, action) {
