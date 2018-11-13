@@ -5,11 +5,7 @@ import { ProgressBar } from 'react-materialize'
 class RecipeList extends Component {
   
   componentDidMount() {
-    (this.props.match)? this.props.getRecipes(this.props.match.params.searchName) : this.props.getRecipes() ;
-  }
-
-  componentWillUpdate(){
-    console.log('hi')
+    (this.props.match)? this.props.getRecipes(this.props.match.params.searchName) : this.props.getRecipes();
   }
 
   render() {
