@@ -5,11 +5,10 @@ import store from './store';
 import { Row, Col } from "react-materialize";
 import './App.scss';
 import NavigationBar from './components/shared/NavigationBar'
-import Home from "./components/Home/Home";
+import Home from "./components/home/Home";
 import Recipe from './components/shared/Recipe/Recipe'
 import Category from './components/Category/Category';
-import { RecipeSearch } from "./components/shared/RecipeList";
-
+import { RecipeSearch, CategoryList } from "./components/shared/RecipeList";
 
 const App = () =>  {
     return (
@@ -24,8 +23,9 @@ const App = () =>  {
                   <Switch>
                     <Route path="/recipe/:id" component={Recipe} />
                     <Route path="/categories" component={Category} />
+                    <Route path="/recipeByCat" component={CategoryList} />
                     <Route path="/recipeSearch/:searchName" component={RecipeSearch} />
-                    <Route path="/" component={Home} />
+                    <Route exact path="/" component={Home} />
                   </Switch>
                 </Col>
               </Row>

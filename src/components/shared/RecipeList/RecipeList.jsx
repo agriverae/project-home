@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import RecipeCard from "../RecipeCard/RecipeCard";
-import { ProgressBar } from 'react-materialize'
+import { ProgressBar } from 'react-materialize';
 
 class RecipeList extends Component {
 
   componentDidMount() {
-    (this.props.match)? this.props.getRecipes(this.props.match.params.searchName) : this.props.getRecipes();
+    if(!this.props.match && this.props.getRecipes)
+      this.props.getRecipes();
   }
   
   render() {

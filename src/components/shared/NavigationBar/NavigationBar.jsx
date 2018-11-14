@@ -14,6 +14,16 @@ class NavigationBar extends Component {
     })
   }
 
+  handleKeyPress = (e) => {
+    if (e.key === 'Enter')
+      this.redirecTo();
+  }
+
+  redirecTo = () => {
+    this.props.searchForRecipe(this.state.searchValue);
+    this.props.history.push(`/recipeSearch/${this.state.searchValue}`);
+  }
+
   render() {
     return (
       <Navbar brand='Website' left>
@@ -24,11 +34,9 @@ class NavigationBar extends Component {
           <NavItem>Categories</NavItem>
         </NavLink>
         <NavItem onClick={() => {}}>
-          <input value={this.state.searchValue} onChange={this.handleSearchChange} type="text" placeholder="Find a recipe"/>
+          <input onKeyPress={this.handleKeyPress} value={this.state.searchValue} onChange={this.handleSearchChange} type="text" placeholder="Find a recipe"/>
         </NavItem>
-        <NavItem onClick={() => {this.setState({
-      searchValue: ''
-    }); this.props.history.push(`/recipeSearch/${this.state.searchValue}`);}}>
+        <NavItem onClick={this.redirecTo}>
         <Icon>search</Icon>
         </NavItem>
       </Navbar>
