@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import api from '../../../config/apiconfig';
+import notFound from "../../../assets/images/not-found.png";
 import { MediaBox, ProgressBar } from "react-materialize";
 
 class Recipe extends Component{
@@ -21,6 +22,10 @@ class Recipe extends Component{
             })
     }
 
+    addDefaultSrc = (e) => {
+        e.target.src = notFound;
+    }
+
     render() {
 
         let mostrar = null;
@@ -28,7 +33,7 @@ class Recipe extends Component{
         if(this.state.isLoaded){
             mostrar = 
                 <div>
-                    <MediaBox src={this.state.recipe.imageUrl} width="80%"/>
+                    <MediaBox onError={this.addDefaultSrc} src={this.state.recipe.imageUrl} width="80%"/>
                     <div>
                         <h3>{this.state.recipe.recipeName}</h3>
                     </div>

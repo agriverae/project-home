@@ -26,7 +26,7 @@ class NavigationBar extends Component {
 
   render() {
     return (
-      <Navbar brand='Website' left>
+      <Navbar brand='Holis' left>
         <NavLink to="/" exact activeClassName="my-active">
           <NavItem>Home</NavItem>
         </NavLink>
@@ -39,6 +39,9 @@ class NavigationBar extends Component {
         <NavItem onClick={this.redirecTo}>
         <Icon>search</Icon>
         </NavItem>
+        <NavLink to="/configRecipe" exact activeClassName="my-active">
+          <NavItem>Configure Recipes</NavItem>
+        </NavLink>
       </Navbar>
     )
   }

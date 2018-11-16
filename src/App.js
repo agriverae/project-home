@@ -9,6 +9,7 @@ import Home from "./components/home/Home";
 import Recipe from './components/shared/Recipe/Recipe'
 import Category from './components/Category/Category';
 import { RecipeSearch, CategoryList } from "./components/shared/RecipeList";
+import ConfigRecipe from "./components/ConfigRecipe/ConfigRecipe";
 
 const App = () =>  {
     return (
@@ -25,6 +26,7 @@ const App = () =>  {
                     <Route path="/categories" component={Category} />
                     <Route path="/recipeByCat" component={CategoryList} />
                     <Route path="/recipeSearch/:searchName" component={RecipeSearch} />
+                    <Route path="/configRecipe" component={ConfigRecipe} />
                     <Route exact path="/" component={Home} />
                   </Switch>
                 </Col>

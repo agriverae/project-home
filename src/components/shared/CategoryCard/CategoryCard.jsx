@@ -1,16 +1,12 @@
 import React from "react";
 import { Card, Col, CardTitle } from 'react-materialize';
-import { Redirect } from 'react-router-dom';
 
-const CategoryCard = ({category, category : {id, description, iconUrl}, recipes,history}) => {
-
-    const redirecTo = () => {
-        return <Redirect />
-    }
+const CategoryCard = ({clickEvent, category, category : {id, description, iconUrl}}) => {
 
     return (
-        <Col s={2}>
-            <Card key={id} onClick={() => { redirecTo() } } header={<CardTitle image={iconUrl}>{description}</CardTitle>}>
+        <Col s={2} l={1}>
+            <Card key={id} onClick={clickEvent} header={<CardTitle image={iconUrl}></CardTitle>}>
+                {description}
             </Card>
         </Col>
     )
