@@ -2,7 +2,7 @@ import RecipeList from './RecipeList';
 import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
-  recipes: state.recipes.recipesFound
+  recipes: state.requestRecipesSearch.recipesFound
 });
 
 const mapDispatchToProps = null;

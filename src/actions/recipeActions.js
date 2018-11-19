@@ -2,34 +2,38 @@ import C from './types';
 import axios from "axios";
 import api from "../config/apiconfig";
 
-export const fetchAllRecipes = () => dispatch => {
-    return axios.get(`${api}/recipes`)
-    .then(recipes => 
+export const requestRecipesSearch = (recipeName) => dispatch => {
+    dispatch({type: C.SEARCH_RECIPES_PENDING});
+    axios.get(`${api}/recipes?recipeName_like=${recipeName}`)
+        .then(recipesFound => {
+            dispatch({
+                type: C.SEARCH_RECIPES_SUCCESS,
+                payload: recipesFound.data
+            })
+        })
+        .catch(error => { 
+            dispatch({
+                type: C.SEARCH_RECIPES_FAILED,
+                payload: error.data
+            })
+        })
+}
+
+export const requestRecipes = () => dispatch => {
+    dispatch({type: C.RECIPES_PENDING});
+    axios.get(`${api}/recipes`)
+    .then( recipes => 
         {
             dispatch({
-                type: C.FETCH_ALL_RECIPES,
+                type: C.RECIPES_SUCCESS,
                 payload: recipes.data
             });
-        }
-    );
-}
-
-export const fetchRecipe = (id) => dispatch => {
-    return axios.get(`${api}/recipes/${id}`)
-            .then(recipe => {
-                dispatch({
-                    type: C.FETCH_RECIPE,
-                    payload: recipe.data
-                })
+        })
+    .catch( error =>
+        {
+            dispatch({
+                type: C.RECIPES_FAILED,
+                payload: error.data
             })
-}
-
-export const searchRecipes = (recipeName) => dispatch => {
-    return axios.get(`${api}/recipes?recipeName_like=${recipeName}`)
-            .then(recipes => {
-                dispatch({
-                    type: C.SEARCH_RECIPES,
-                    payload: recipes.data
-                })
-            });
+        })
 }

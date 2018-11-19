@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchAllCategories } from "../../actions/categoryActions";
-import { fetchAllRecipes } from "../../actions/recipeActions";
+import { requestRecipes } from "../../actions/recipeActions";
 import { connect } from 'react-redux';
 import { ProgressBar, Col } from 'react-materialize';
 import CategoryCard from '../shared/CategoryCard/CategoryCard'
@@ -15,7 +15,6 @@ class Category extends Component {
     componentDidMount(){
         this.props.getCategories();
         this.props.getRecipes();
-        
     }
 
     handleRecipeByCat = (categoryId) => {
@@ -60,7 +59,7 @@ class Category extends Component {
 
 const mapStateToProps = state => ({
     categories: state.categories.categories,
-    recipes: state.recipes.recipes
+    recipes: state.requestRecipes.recipes
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -68,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(fetchAllCategories());
     },
     getRecipes(){
-        dispatch(fetchAllRecipes());
+        dispatch(requestRecipes());
     }
 });
 

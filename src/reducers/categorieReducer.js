@@ -2,6 +2,7 @@ import C from '../actions/types';
 
 const initialState = {
     categories: [],
+    status: ''
 };
 
 export default function(state = initialState, action) {
