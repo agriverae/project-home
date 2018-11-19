@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { requestRecipes, requestRecipesSearch} from "./recipeReducer";
-import categorieReducer from "./categorieReducer";
+import {requestCategories} from "./categorieReducer";
 
 export default combineReducers({
     requestRecipes,
     requestRecipesSearch,
-    categories: categorieReducer,
+    requestCategories,
 });

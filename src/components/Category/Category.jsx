@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchAllCategories } from "../../actions/categoryActions";
+import { requestCategories } from "../../actions/categoryActions";
 import { requestRecipes } from "../../actions/recipeActions";
 import { connect } from 'react-redux';
 import { ProgressBar, Col } from 'react-materialize';
@@ -58,13 +58,13 @@ class Category extends Component {
 }
 
 const mapStateToProps = state => ({
-    categories: state.categories.categories,
+    categories: state.requestCategories.categories,
     recipes: state.requestRecipes.recipes
 });
 
 const mapDispatchToProps = dispatch => ({
     getCategories(){
-        dispatch(fetchAllCategories());
+        dispatch(requestCategories());
     },
     getRecipes(){
         dispatch(requestRecipes());

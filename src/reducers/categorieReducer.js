@@ -1,17 +1,30 @@
 import C from '../actions/types';
 
-const initialState = {
+const initalStateCategories = {
+    isPending : false,
     categories: [],
-    status: ''
-};
+    error: '',
+}
 
-export default function(state = initialState, action) {
+export const requestCategories = (state = initalStateCategories, action) => {
     switch(action.type) {
-        case C.FETCH_ALL_CATEGORIES: 
+        case C.CATEGORIES_PENDING:
             return {
                 ...state,
-                categories: action.payload 
-            };
+                isPending: true
+            }
+        case C.CATEGORIES_SUCCESS:
+            return {
+                ...state,
+                isPending: true,
+                categories: action.payload
+            }
+        case C.CATEGORIES_FAILED:
+            return {
+                ...state,
+                isPending: true,
+                error: action.payload
+            }
         default:
             return state;
     }
