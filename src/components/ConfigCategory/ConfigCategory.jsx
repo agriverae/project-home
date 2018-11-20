@@ -40,16 +40,23 @@ class ConfigCategory extends Component {
     })
   }
 
-  renderCatRecipes = () => {
+  actualizarCategoria = () => {
     console.log(this.state.category);
+  }
+
+  borrarCategoria = () => {
+    console.log(this.state.category)
+  }
+
+  renderCatRecipes = () => {
     return (
       <Row>
         <Col s={12}>
           <Input onChange={this.categoryDescriptionChange} value={this.state.category.description} s={6} label="Category Name" />
           <Input onChange={this.categoryIconURLChange} value={this.state.category.iconUrl} label="imageURL" s={12} />
         </Col>
-        <Button>Update</Button>
-        <Button>Borrar</Button>
+        <Button onClick={this.actualizarCategoria}>Update</Button>
+        <Button onClick={this.actualizarCategoria}>Borrar</Button>
       </Row>
     )
   }
