@@ -30,25 +30,28 @@ class Category extends Component {
 
     render(){
         let mostrar = null;
-
-        if(this.props.categories.length === 0){
+        const { isPending, categories, error } = this.props;
+        if(isPending)
             mostrar = <ProgressBar />
-        }
         else {
-            let categories = this.props.categories.map((category) =>{
-                return (
-                    <CategoryCard key={category.id} clickEvent={() => {this.handleRecipeByCat(category.id)}} category={category}/>
+            if(categories.length !== 0){
+                let categoriesRender = categories.map((category) =>{
+                    return (
+                        <CategoryCard key={category.id} clickEvent={() => {this.handleRecipeByCat(category.id)}} category={category}/>
+                    )
+                }); 
+            
+                mostrar = (
+                    <div>                    
+                        {categoriesRender}
+                        <Col s={12}>
+                            {this.renderCatRecipes()}
+                        </Col>
+                    </div>
                 )
-            }); 
-
-            mostrar = (
-                <div>                    
-                    {categories}
-                    <Col s={12}>
-                        {this.renderCatRecipes()}
-                    </Col>
-                </div>
-            )
+            }
+            else
+                mostrar = <div><h2>No categories to show</h2></div>
         }
 
         return (

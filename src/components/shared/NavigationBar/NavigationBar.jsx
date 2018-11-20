@@ -42,6 +42,9 @@ class NavigationBar extends Component {
         <NavLink to="/configRecipe" exact activeClassName="my-active">
           <NavItem>Configure Recipes</NavItem>
         </NavLink>
+        <NavLink to="/configCategory" exact activeClassName="my-active">
+          <NavItem>Configure Categories</NavItem>
+        </NavLink>
       </Navbar>
     )
   }

@@ -11,18 +11,19 @@ class RecipeList extends Component {
   
   render() {
     
-    let mostrar;
+    const {recipes, isPending} = this.props;
 
-    if(this.props.recipes.length === 0){
-        mostrar = <ProgressBar />
-    }
+    let mostrar = null;
+
+    if(isPending)
+      mostrar = <ProgressBar />
     else {
-      mostrar = this.props.recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />); 
+      if(recipes.length !== 0)
+        mostrar = recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />);
+      else
+        mostrar = <div><h2>No recipes to show</h2></div>
     }
-
-    return (
-      mostrar
-    )
+    return mostrar;
   }
 }
 
