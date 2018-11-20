@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Row, Input, Col, ProgressBar, Button } from "react-materialize";
-import { requestCategories } from "../../actions/categoryActions";
+import { requestCategories, addCategories, updateCategories, deleteCategories } from "../../actions/categoryActions";
 import CategoryCard from '../shared/CategoryCard/CategoryCard';
 
 class ConfigCategory extends Component {
@@ -9,7 +9,7 @@ class ConfigCategory extends Component {
   state = {
     category: {
       id: '',
-      category: '',
+      description: '',
       iconUrl: '',
     }
   }
@@ -40,12 +40,16 @@ class ConfigCategory extends Component {
     })
   }
 
-  actualizarCategoria = () => {
-    console.log(this.state.category);
+  crearCategoria = () => {
+    this.props.addCategories(this.state.category);
   }
 
   borrarCategoria = () => {
-    console.log(this.state.category)
+    this.props.deleteCategories(this.state.category);
+  }
+
+  actualizarCategoria = () => {
+    this.props.updateCategories(this.state.category)
   }
 
   renderCatRecipes = () => {
@@ -55,8 +59,11 @@ class ConfigCategory extends Component {
           <Input onChange={this.categoryDescriptionChange} value={this.state.category.description} s={6} label="Category Name" />
           <Input onChange={this.categoryIconURLChange} value={this.state.category.iconUrl} label="imageURL" s={12} />
         </Col>
-        <Button onClick={this.actualizarCategoria}>Update</Button>
-        <Button onClick={this.actualizarCategoria}>Borrar</Button>
+        <Col s={12}>
+          <Button onClick={this.crearCategoria}>Crear</Button>
+          <Button onClick={this.actualizarCategoria}>Update</Button>
+          <Button onClick={this.borrarCategoria}>Borrar</Button>
+        </Col>
       </Row>
     )
   }
@@ -98,6 +105,15 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>({
   getCategories() {
     dispatch(requestCategories());
+  },
+  addCategories(category) {
+    dispatch(addCategories(category));
+  },
+  updateCategories(category) {
+    dispatch(updateCategories(category));
+  },
+  deleteCategories(category) {
+    dispatch(deleteCategories(category));
   }
 })
 
