@@ -76,6 +76,24 @@ class ConfigRecipe extends Component{
         })
     }
 
+    handleInputChange = (e) => {
+        const value = e.target.value;
+        const index = e.target.getAttribute('index')
+        let {recipe} = this.state;
+        recipe.preparation[index] = value;
+        this.setState({
+            recipe
+        })
+    }
+
+    agregarPaso = () => {
+        let {recipe} = this.state;
+        recipe.preparation.push('');
+        this.setState({
+            recipe
+        })
+    }
+
 
     render(){
         const { isPending, recipes, error } = this.props;
@@ -86,7 +104,7 @@ class ConfigRecipe extends Component{
         else {
             if(recipes.length !== 0){
 
-                const recipesChips = this.props.recipes.map(recipe => <Chip key={recipe.id} onClick={() => {this.selectRecipe({...recipe})}}>
+                const recipesChips = this.props.recipes.map(recipe => <Chip key={recipe.id} id={recipe.id} onClick={() => {this.selectRecipe({...recipe, preparation: [...recipe.preparation]})}}>
                     <img onError={this.addDefaultSrc} src={recipe.imageUrl} alt={recipes.recipeName} />
                     {recipe.recipeName}
                 </Chip>);
@@ -98,9 +116,9 @@ class ConfigRecipe extends Component{
                             <Input onChange={this.recipeImageUrlChange} value={this.state.recipe.imageUrl} label="ImageUrl" s={11} />
                             <Input onChange={this.recipeRatingChange} value={this.state.recipe.rating} label="Rating" s={1} />
                             {this.state.recipe.preparation.map((step,i) => {
-                                return <Input key={i} s={12} value={step} />
+                                return <Input key={i} s={12} index={i} value={step} onChange={this.handleInputChange}/>
                             })}
-                            <Button>Agregar Paso</Button>                         
+                            <Button onClick={this.agregarPaso}>Agregar Paso</Button>                         
                         </Col>
                         <Col s={12}>
                             <Button onClick={this.crearRecipe}>Crear</Button>
