@@ -22,6 +22,12 @@ class ConfigRecipe extends Component{
         this.props.getRecipes()
     }
 
+    selectRecipe = (recipe) => {
+        this.setState({
+            recipe
+        })
+    }
+
     addDefaultSrc = (e) => {
         e.target.src = notFound;
     }
@@ -54,6 +60,23 @@ class ConfigRecipe extends Component{
         })
     }
 
+    recipeRatingChange = (e) => {
+        const recipe = this.state.recipe;
+        recipe.rating = e.target.value;
+        this.setState({
+            recipe
+        })
+    }
+
+    recipeImageUrlChange = (e) => {
+        const recipe = this.state.recipe;
+        recipe.imageUrl = e.target.value;
+        this.setState({
+            recipe
+        })
+    }
+
+
     render(){
         const { isPending, recipes, error } = this.props;
         let mostrar = null;
@@ -62,16 +85,22 @@ class ConfigRecipe extends Component{
             mostrar = <ProgressBar />
         else {
             if(recipes.length !== 0){
-                const recipesChips = this.props.recipes.map(recipe => <Chip>
+
+                const recipesChips = this.props.recipes.map(recipe => <Chip key={recipe.id} onClick={() => {this.selectRecipe({...recipe})}}>
                     <img onError={this.addDefaultSrc} src={recipe.imageUrl} alt={recipes.recipeName} />
                     {recipe.recipeName}
                 </Chip>);
-
                 const form = (
                     <Row>
                         <Col s={12}>
-                            <Input onChange={this.recipeNameChange} value={this.state.recipe.recipeName} s={6} label="Recipe Name" />
-                            <Input onChange={this.recipeChefChange} value={this.state.recipe.chef} label="chef" s={12} />
+                            <Input onChange={this.recipeNameChange} value={this.state.recipe.recipeName} s={8} label="Recipe Name" />
+                            <Input onChange={this.recipeChefChange} value={this.state.recipe.chef} label="Chef" s={4} />
+                            <Input onChange={this.recipeImageUrlChange} value={this.state.recipe.imageUrl} label="ImageUrl" s={11} />
+                            <Input onChange={this.recipeRatingChange} value={this.state.recipe.rating} label="Rating" s={1} />
+                            {this.state.recipe.preparation.map((step,i) => {
+                                return <Input key={i} s={12} value={step} />
+                            })}
+                            <Button>Agregar Paso</Button>                         
                         </Col>
                         <Col s={12}>
                             <Button onClick={this.crearRecipe}>Crear</Button>

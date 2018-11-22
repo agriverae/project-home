@@ -77,7 +77,7 @@ class ConfigCategory extends Component {
       if(categories.length !== 0){
         let categoriesRender = categories.map((category) =>{
           return (
-              <CategoryCard key={category.id} clickEvent={() => {this.handleRecipeByCat(category)}} category={category}/>
+              <CategoryCard key={category.id} clickEvent={() => {this.handleRecipeByCat({...category})}} category={category}/>
           )
         });
     
