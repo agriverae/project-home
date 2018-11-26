@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from 'react-redux';
-import { requestRecipes } from "../../actions/recipeActions";
+import { requestRecipes, addRecipe, updateRecipe,deleteRecipe } from "../../actions/recipeActions";
+import { requestCategories } from "../../actions/categoryActions"
 import { ProgressBar,Chip, Row, Col, Button, Input } from 'react-materialize';
 import notFound from "../../assets/images/not-found.png";
 
@@ -19,7 +20,8 @@ class ConfigRecipe extends Component{
     }
 
     componentDidMount(){
-        this.props.getRecipes()
+        this.props.getRecipes();
+        this.props.getCategories();
     }
 
     selectRecipe = (recipe) => {
@@ -30,14 +32,6 @@ class ConfigRecipe extends Component{
 
     addDefaultSrc = (e) => {
         e.target.src = notFound;
-    }
-
-    crearRecipe = () => {
-
-    }
-
-    actualizarRecipe = () => {
-
     }
 
     borrarRecipe = () => {
@@ -86,6 +80,14 @@ class ConfigRecipe extends Component{
         })
     }
 
+    recipeCategoryChange = (e) => {
+        const recipe = this.state.recipe;
+        recipe.categoryId = e.target.value;
+        this.setState({
+            recipe
+        })
+    }
+
     agregarPaso = () => {
         let {recipe} = this.state;
         recipe.preparation.push('');
@@ -96,7 +98,7 @@ class ConfigRecipe extends Component{
 
 
     render(){
-        const { isPending, recipes, error } = this.props;
+        const { isPending, recipes, categories, error } = this.props;
         let mostrar = null;
 
         if(isPending)
@@ -115,15 +117,20 @@ class ConfigRecipe extends Component{
                             <Input onChange={this.recipeChefChange} value={this.state.recipe.chef} label="Chef" s={4} />
                             <Input onChange={this.recipeImageUrlChange} value={this.state.recipe.imageUrl} label="ImageUrl" s={11} />
                             <Input onChange={this.recipeRatingChange} value={this.state.recipe.rating} label="Rating" s={1} />
+                            <Input onChange={this.recipeCategoryChange} s={12} type='select' label="Categories" value={this.state.recipe.categoryId}>
+                                {categories.map((category,i) => {
+                                    return <option key={i} value={category.id}>{category.description}</option>
+                                })}
+                            </Input>
                             {this.state.recipe.preparation.map((step,i) => {
                                 return <Input key={i} s={12} index={i} value={step} onChange={this.handleInputChange}/>
                             })}
                             <Button onClick={this.agregarPaso}>Agregar Paso</Button>                         
                         </Col>
                         <Col s={12}>
-                            <Button onClick={this.crearRecipe}>Crear</Button>
-                            <Button onClick={this.actualizarRecipe}>Update</Button>
-                            <Button onClick={this.borrarRecipe}>Borrar</Button>
+                            <Button onClick={ () => this.props.crearRecipe(this.state.recipe)}>Crear</Button>
+                            <Button onClick={() => this.props.actualizarRecipe(this.state.recipe)}>Update</Button>
+                            <Button onClick={() => this.props.deleteRecipe(this.state.recipe)}>Borrar</Button>
                         </Col>
                     </Row>
                 );
@@ -146,12 +153,25 @@ class ConfigRecipe extends Component{
 }
 
 const mapStateToProps = state => ({
-    recipes: state.requestRecipes.recipes
+    recipes: state.requestRecipes.recipes,
+    categories: state.requestCategories.categories,
 });
 
 const mapDispatchToProps = dispatch => ({
+    getCategories() {
+        dispatch(requestCategories());
+    },
     getRecipes(){
         dispatch(requestRecipes());
+    },
+    crearRecipe(recipe){
+        dispatch(addRecipe(recipe));
+    },
+    actualizarRecipe(recipe){
+        dispatch(updateRecipe(recipe));
+    },
+    deleteRecipe(category) {
+        dispatch(deleteRecipe(category));
     }
 });
 

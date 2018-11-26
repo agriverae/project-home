@@ -37,3 +37,57 @@ export const requestRecipes = () => dispatch => {
             })
         })
 }
+
+export const addRecipe = (recipe) => dispatch => {
+    dispatch({type: C.ADDING_RECIPE_PENDING});
+    delete recipe.id;
+    axios.post(`${api}/recipes`, recipe)
+        .then(result => {
+            dispatch({
+                type: C.ADDING_RECIPE_SUCCESS,
+                payload: result.data
+            })
+        })
+        .catch(error => {
+            dispatch({
+                type: C.ADDING_RECIPE_FAILED,
+                payload: error.data
+            })
+        })
+}
+
+export const updateRecipe = (recipe) => dispatch => {
+    dispatch({type: C.UPDATE_RECIPE_PENDING});
+    const id = recipe.id;
+    axios.patch(`${api}/recipes/${id}`, recipe)
+        .then(result => {
+            dispatch({
+                type: C.UPDATE_RECIPE_SUCCESS,
+                payload: result.data
+            })
+        })
+        .catch(error => {
+            dispatch({
+                type: C.UPDATE_RECIPE_FAILED,
+                payload: error.data
+            })
+        })
+}
+
+export const deleteRecipe = (recipe) => dispatch => {
+    dispatch({type: C.DELETE_RECIPE_PENDING});
+    const id = recipe.id;
+    axios.delete(`${api}/recipes/${id}`)
+        .then(result => {
+            dispatch({
+                type: C.DELETE_RECIPE_SUCCESS,
+                payload: id
+            })
+        })
+        .catch(error => {
+            dispatch({
+                type: C.DELETE_RECIPE_FAILED,
+                payload: error.data
+            })
+        })
+}
