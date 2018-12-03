@@ -66,6 +66,15 @@ server.post('*', [middleware.requireAuthentication] ,function(req, res,next){
     next();
 });
 
+
+server.patch('*', [middleware.requireAuthentication] ,function(req, res,next){
+    next();
+});
+
+server.delete('*', [middleware.requireAuthentication] ,function(req, res,next){
+    next();
+});
+
 server.use(router)
 
 server.listen(5000, () => {

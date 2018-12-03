@@ -24,26 +24,6 @@
       "description": "Drinks",
       "iconUrl": "http://icons.iconarchive.com/icons/graphicloads/food-drink/32/drink-icon.png",
       "id": 5
-    },
-    {
-      "description": "comida",
-      "iconUrl": "asfdsfsdf",
-      "id": 6
-    },
-    {
-      "description": "comida",
-      "iconUrl": "asfdsfsdf",
-      "id": 7
-    },
-    {
-      "description": "comida",
-      "iconUrl": "asfdsfsdf",
-      "id": 8
-    },
-    {
-      "description": "comida",
-      "iconUrl": "asfdsfsdf",
-      "id": 9
     }
   ],
   "recipes": [
