@@ -26,7 +26,7 @@ class NavigationBar extends Component {
 
   render() {
     return (
-      <Navbar brand='Holis' left>
+      <Navbar left>
         <NavLink to="/" exact activeClassName="my-active">
           <NavItem>Home</NavItem>
         </NavLink>

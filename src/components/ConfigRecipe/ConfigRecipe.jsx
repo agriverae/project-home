@@ -125,12 +125,12 @@ class ConfigRecipe extends Component{
                             {this.state.recipe.preparation.map((step,i) => {
                                 return <Input key={i} s={12} index={i} value={step} onChange={this.handleInputChange}/>
                             })}
-                            <Button onClick={this.agregarPaso}>Agregar Paso</Button>                         
+                            <Button className="step red lighten-2" onClick={this.agregarPaso}>Add Step</Button>                         
                         </Col>
                         <Col s={12}>
-                            <Button onClick={ () => this.props.crearRecipe(this.state.recipe)}>Crear</Button>
-                            <Button onClick={() => this.props.actualizarRecipe(this.state.recipe)}>Update</Button>
-                            <Button onClick={() => this.props.deleteRecipe(this.state.recipe)}>Borrar</Button>
+                            <Button className="action-button blue" onClick={ () => this.props.crearRecipe(this.state.recipe)}>Create</Button>
+                            <Button className="action-button green" onClick={() => this.props.actualizarRecipe(this.state.recipe)}>Update</Button>
+                            <Button className="action-button red" onClick={() => this.props.deleteRecipe(this.state.recipe)}>Delete</Button>
                         </Col>
                     </Row>
                 );

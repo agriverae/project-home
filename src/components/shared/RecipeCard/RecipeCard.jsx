@@ -11,7 +11,7 @@ const Recipe = ({history,recipe}) => {
   }
 
   return (<Col s={6}>
-    <Card onError={addDefaultSrc} onClick={() => { history.push(`/recipe/${recipe.id}`) }} header={<CardTitle image={recipe.imageUrl}>{recipe.recipeName}</CardTitle>}>
+    <Card className="recipe" onError={addDefaultSrc} onClick={() => { history.push(`/recipe/${recipe.id}`) }} header={<CardTitle image={recipe.imageUrl}>{recipe.recipeName}</CardTitle>}>
     </Card>
   </Col>
   )

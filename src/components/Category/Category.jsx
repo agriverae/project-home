@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { requestCategories } from "../../actions/categoryActions";
 import { requestRecipes } from "../../actions/recipeActions";
 import { connect } from 'react-redux';
-import { ProgressBar, Col } from 'react-materialize';
+import { ProgressBar, Col,Row } from 'react-materialize';
 import CategoryCard from '../shared/CategoryCard/CategoryCard'
 import { CategoryList } from "../shared/RecipeList";
 
@@ -42,12 +42,12 @@ class Category extends Component {
                 }); 
             
                 mostrar = (
-                    <div>                    
+                    <Row>                    
                         {categoriesRender}
-                        <Col s={12}>
+                        <Col className="category" s={12}>
                             {this.renderCatRecipes()}
                         </Col>
-                    </div>
+                    </Row>
                 )
             }
             else
