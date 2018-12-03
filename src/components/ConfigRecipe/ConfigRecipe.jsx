@@ -96,6 +96,20 @@ class ConfigRecipe extends Component{
         })
     }
 
+    reset = () => {
+        this.setState({
+            recipe: {
+                categoryId: '',
+                recipeName: '',
+                chef: '',
+                preparation: [],
+                rating: '',
+                imageUrl: '',
+                publishDate: '',
+            }
+        })
+    }
+
 
     render(){
         const { isPending, recipes, categories, error } = this.props;
@@ -128,6 +142,7 @@ class ConfigRecipe extends Component{
                             <Button className="step red lighten-2" onClick={this.agregarPaso}>Add Step</Button>                         
                         </Col>
                         <Col s={12}>
+                            <Button className="action-button" onClick={this.reset}>New</Button>
                             <Button className="action-button blue" onClick={ () => this.props.crearRecipe(this.state.recipe)}>Create</Button>
                             <Button className="action-button green" onClick={() => this.props.actualizarRecipe(this.state.recipe)}>Update</Button>
                             <Button className="action-button red" onClick={() => this.props.deleteRecipe(this.state.recipe)}>Delete</Button>

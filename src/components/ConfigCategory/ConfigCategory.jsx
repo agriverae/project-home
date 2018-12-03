@@ -52,6 +52,16 @@ class ConfigCategory extends Component {
     this.props.updateCategories(this.state.category)
   }
 
+  reset = () => {
+    this.setState({
+      category: {
+        id: '',
+        description: '',
+        iconUrl: '',
+      }
+    })
+  }
+
   renderCatRecipes = () => {
     return (
       <Row>
@@ -60,6 +70,7 @@ class ConfigCategory extends Component {
           <Input onChange={this.categoryIconURLChange} value={this.state.category.iconUrl} label="imageURL" s={12} />
         </Col>
         <Col s={12}>
+          <Button className="" onClick={this.reset}>New</Button>
           <Button onClick={this.crearCategoria}>Crear</Button>
           <Button onClick={this.actualizarCategoria}>Update</Button>
           <Button onClick={this.borrarCategoria}>Borrar</Button>
