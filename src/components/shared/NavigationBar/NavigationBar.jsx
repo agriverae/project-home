@@ -45,6 +45,9 @@ class NavigationBar extends Component {
         <NavLink to="/configCategory" exact activeClassName="my-active">
           <NavItem>Configure Categories</NavItem>
         </NavLink>
+        <NavLink to="/login" exact activeClassName="my-active">
+          <NavItem>Login</NavItem>
+        </NavLink>
       </Navbar>
     )
   }
