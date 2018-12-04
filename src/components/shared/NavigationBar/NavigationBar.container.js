@@ -3,7 +3,10 @@ import { requestRecipesSearch } from "../../../actions/recipeActions";
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = null
+const mapStateToProps = (state) => ({
+  isLogin: state.loginUsuario.isLogin,
+});
+
 
 const mapDispatchToProps = dispatch =>({
   searchForRecipe(recipeName) {

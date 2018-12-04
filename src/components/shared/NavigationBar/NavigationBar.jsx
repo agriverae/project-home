@@ -39,10 +39,10 @@ class NavigationBar extends Component {
         <NavItem onClick={this.redirecTo}>
         <Icon>search</Icon>
         </NavItem>
-        <NavLink to="/configRecipe" exact activeClassName="my-active">
+        <NavLink className={this.props.isLogin ? null : 'no-display'} to="/configRecipe" exact activeClassName="my-active">
           <NavItem>Configure Recipes</NavItem>
         </NavLink>
-        <NavLink to="/configCategory" exact activeClassName="my-active">
+        <NavLink className={this.props.isLogin ? null : 'no-display'} to="/configCategory" exact activeClassName="my-active">
           <NavItem>Configure Categories</NavItem>
         </NavLink>
         <NavLink to="/login" exact activeClassName="my-active">
