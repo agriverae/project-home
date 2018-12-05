@@ -10,7 +10,7 @@ const Recipe = ({history,recipe}) => {
     e.target.src = notFound;
   }
 
-  return (<Col s={6}>
+  return (<Col s={12} m={6}>
     <Card className="recipe" onError={addDefaultSrc} onClick={() => { history.push(`/recipe/${recipe.id}`) }} header={<CardTitle image={recipe.imageUrl}>{recipe.recipeName}</CardTitle>}>
     </Card>
   </Col>

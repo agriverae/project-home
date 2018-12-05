@@ -41,15 +41,15 @@ class ConfigCategory extends Component {
   }
 
   crearCategoria = () => {
-    this.props.addCategories(this.state.category);
+    this.props.addCategories(this.state.category, this.props.token);
   }
 
   borrarCategoria = () => {
-    this.props.deleteCategories(this.state.category);
+    this.props.deleteCategories(this.state.category, this.props.token);
   }
 
   actualizarCategoria = () => {
-    this.props.updateCategories(this.state.category)
+    this.props.updateCategories(this.state.category, this.props.token)
   }
 
   reset = () => {
@@ -111,20 +111,21 @@ class ConfigCategory extends Component {
 
 const mapStateToProps = state => ({
   categories: state.requestCategories.categories,
+  token: state.loginUsuario.token,
 })
 
 const mapDispatchToProps = dispatch =>({
   getCategories() {
     dispatch(requestCategories());
   },
-  addCategories(category) {
-    dispatch(addCategories(category));
+  addCategories(category, token) {
+    dispatch(addCategories(category, token));
   },
-  updateCategories(category) {
-    dispatch(updateCategories(category));
+  updateCategories(category, token) {
+    dispatch(updateCategories(category, token));
   },
-  deleteCategories(category) {
-    dispatch(deleteCategories(category));
+  deleteCategories(category, token) {
+    dispatch(deleteCategories(category, token));
   }
 })
 

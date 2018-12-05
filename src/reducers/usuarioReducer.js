@@ -28,6 +28,12 @@ export const loginUsuario = (state = initiaUsuarioInfo, action) => {
                 isLogin: false,
                 error: action.payload
             }
+        case C.LOGOUT:
+            return {
+                ...state,
+                isLogin: false,
+                token: '',
+            }
         default: 
             return state
     }

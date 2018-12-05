@@ -19,10 +19,12 @@ export const requestCategories = () => dispatch => {
         });
 }
 
-export const addCategories = (category) => dispatch => {
+export const addCategories = (category, token) => dispatch => {
     dispatch({type: C.ADDING_CATEGORY_PENDING});
     delete category.id;
-    axios.post(`${api}/categories`, category)
+    axios.post(`${api}/categories`, category, {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.ADDING_CATEGORY_SUCCESS,
@@ -37,10 +39,12 @@ export const addCategories = (category) => dispatch => {
         })
 }
 
-export const updateCategories = (category) => dispatch => {
+export const updateCategories = (category, token) => dispatch => {
     dispatch({type: C.UPDATE_CATEGORY_PENDING});
     const id = category.id;
-    axios.patch(`${api}/categories/${id}`, category)
+    axios.patch(`${api}/categories/${id}`, category,  {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.UPDATE_CATEGORY_SUCCESS,
@@ -55,10 +59,12 @@ export const updateCategories = (category) => dispatch => {
         })
 }
 
-export const deleteCategories = (category) => dispatch => {
+export const deleteCategories = (category, token) => dispatch => {
     dispatch({type: C.DELETE_CATEGORY_PENDING});
     const id = category.id;
-    axios.delete(`${api}/categories/${id}`)
+    axios.delete(`${api}/categories/${id}`,  {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.DELETE_CATEGORY_SUCCESS,

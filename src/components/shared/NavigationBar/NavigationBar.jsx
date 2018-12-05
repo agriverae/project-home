@@ -40,14 +40,15 @@ class NavigationBar extends Component {
         <Icon>search</Icon>
         </NavItem>
         <NavLink className={this.props.isLogin ? null : 'no-display'} to="/configRecipe" exact activeClassName="my-active">
-          <NavItem>Configure Recipes</NavItem>
+          <NavItem>Recipe BO</NavItem>
         </NavLink>
         <NavLink className={this.props.isLogin ? null : 'no-display'} to="/configCategory" exact activeClassName="my-active">
-          <NavItem>Configure Categories</NavItem>
+          <NavItem>Categories BO</NavItem>
         </NavLink>
-        <NavLink to="/login" exact activeClassName="my-active">
+        <NavLink className={this.props.isLogin ? 'no-display': null} to="/login" exact activeClassName="my-active">
           <NavItem>Login</NavItem>
         </NavLink>
+        <NavItem className={this.props.isLogin ? null : 'no-display'} onClick={this.props.logout}>Logout</NavItem>
       </Navbar>
     )
   }

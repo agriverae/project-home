@@ -18,3 +18,7 @@ export const userLogin = (user) => dispatch => {
             });
         })
 }
+
+export const userLogout = () => dispatch => {
+    dispatch({type: C.LOGOUT});
+}

@@ -143,9 +143,9 @@ class ConfigRecipe extends Component{
                         </Col>
                         <Col s={12}>
                             <Button className="action-button" onClick={this.reset}>New</Button>
-                            <Button className="action-button blue" onClick={ () => this.props.crearRecipe(this.state.recipe)}>Create</Button>
-                            <Button className="action-button green" onClick={() => this.props.actualizarRecipe(this.state.recipe)}>Update</Button>
-                            <Button className="action-button red" onClick={() => this.props.deleteRecipe(this.state.recipe)}>Delete</Button>
+                            <Button className="action-button blue" onClick={ () => this.props.crearRecipe(this.state.recipe, this.props.token)}>Create</Button>
+                            <Button className="action-button green" onClick={() => this.props.actualizarRecipe(this.state.recipe, this.props.token)}>Update</Button>
+                            <Button className="action-button red" onClick={() => this.props.deleteRecipe(this.state.recipe, this.props.token)}>Delete</Button>
                         </Col>
                     </Row>
                 );
@@ -170,6 +170,7 @@ class ConfigRecipe extends Component{
 const mapStateToProps = state => ({
     recipes: state.requestRecipes.recipes,
     categories: state.requestCategories.categories,
+    token: state.loginUsuario.token,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -179,14 +180,14 @@ const mapDispatchToProps = dispatch => ({
     getRecipes(){
         dispatch(requestRecipes());
     },
-    crearRecipe(recipe){
-        dispatch(addRecipe(recipe));
+    crearRecipe(recipe, token){
+        dispatch(addRecipe(recipe), token);
     },
-    actualizarRecipe(recipe){
-        dispatch(updateRecipe(recipe));
+    actualizarRecipe(recipe, token){
+        dispatch(updateRecipe(recipe, token));
     },
-    deleteRecipe(category) {
-        dispatch(deleteRecipe(category));
+    deleteRecipe(category, token) {
+        dispatch(deleteRecipe(category, token));
     }
 });
 

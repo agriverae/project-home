@@ -38,10 +38,12 @@ export const requestRecipes = () => dispatch => {
         })
 }
 
-export const addRecipe = (recipe) => dispatch => {
+export const addRecipe = (recipe, token) => dispatch => {
     dispatch({type: C.ADDING_RECIPE_PENDING});
     delete recipe.id;
-    axios.post(`${api}/recipes`, recipe)
+    axios.post(`${api}/recipes`, recipe,  {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.ADDING_RECIPE_SUCCESS,
@@ -56,10 +58,12 @@ export const addRecipe = (recipe) => dispatch => {
         })
 }
 
-export const updateRecipe = (recipe) => dispatch => {
+export const updateRecipe = (recipe, token) => dispatch => {
     dispatch({type: C.UPDATE_RECIPE_PENDING});
     const id = recipe.id;
-    axios.patch(`${api}/recipes/${id}`, recipe)
+    axios.patch(`${api}/recipes/${id}`, recipe,  {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.UPDATE_RECIPE_SUCCESS,
@@ -74,10 +78,12 @@ export const updateRecipe = (recipe) => dispatch => {
         })
 }
 
-export const deleteRecipe = (recipe) => dispatch => {
+export const deleteRecipe = (recipe, token) => dispatch => {
     dispatch({type: C.DELETE_RECIPE_PENDING});
     const id = recipe.id;
-    axios.delete(`${api}/recipes/${id}`)
+    axios.delete(`${api}/recipes/${id}`,  {
+        headers: { Authorization: "Bearer " + token }
+    })
         .then(result => {
             dispatch({
                 type: C.DELETE_RECIPE_SUCCESS,

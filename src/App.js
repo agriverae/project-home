@@ -19,8 +19,8 @@ const App = () =>  {
       <Provider store={store}>
         <BrowserRouter>
           <Row>
-            <Col s={2}></Col>
-            <Col s={8}>
+            <Col className="side" s={0} l={1} ></Col>
+            <Col className="main" s={12} l={10} >
               <Row>
                 <Col s={12}>
                   <NavigationBar />
@@ -37,7 +37,7 @@ const App = () =>  {
                 </Col>
               </Row>
             </Col>
-            <Col s={2}></Col>
+            <Col className="side" s={0} l={1} ></Col>
           </Row>
         </BrowserRouter>
       </Provider>
